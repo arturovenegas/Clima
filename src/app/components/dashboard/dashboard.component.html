@@ -1,0 +1,31 @@
+<div *ngIf= 'mostrarError' class="alert alert-dismissible alert-danger">
+    <div class="text-center">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>ERROR AL OBTENER EL CLIMA</strong>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-4">
+            <img [src]="urlImagen" alt="img_clia" width="300px" height="300px">
+        </div>
+        <div class="col-lg-6">
+            <input type="text" class="form-control form-control-lg mb-3 text-center size" 
+                   [(ngModel)]='ciudad' placeholder="Ingrese ciudad">
+            <button (click)='obtenerClima()' class="btn btn-block btn-lg btn-primary size" [disabled] = "ciudad == ''">BUSCAR</button>
+            
+            <div *ngIf='loading' class="d-flex justify-content-center mt-4">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>
+            <div *ngIf = "query" class="card mt-3">
+                <div class="card-body">
+                    <p><b>Temperatura: </b>{{temperatura | number: '1.2-2'}} °C</p>
+                    <p><b>Humedad: </b>{{humedad}} %</p>
+                    <p><b>Clima: </b>{{clima}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
